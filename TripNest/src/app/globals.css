@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --color-sand-50: #fdfaf5;
+  --color-sand-100: #f7f0e6;
+  --color-ink: #14212b;
+  --color-lagoon-50: #eefbf7;
+  --color-lagoon-100: #d3f4eb;
+  --color-lagoon-300: #7ddcc4;
+  --color-lagoon-500: #14a38b;
+  --color-lagoon-600: #0d8371;
+  --color-lagoon-700: #0b6759;
+  --color-coral-400: #ff8a6a;
+  --color-coral-500: #f4694a;
+}
+
+:root {
+  --font-geist-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* {
+  border-color: rgb(226 232 240);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-lagoon-300);
+  color: #06241f;
+}
+
+/* Utilities */
+@utility glass {
+  background: color-mix(in srgb, white 72%, transparent);
+  backdrop-filter: blur(14px);
+}
+
+@utility card-hover {
+  transition: transform 240ms ease, box-shadow 240ms ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px -24px rgb(20 33 43 / 0.35);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgb(241 245 249);
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 0.75),
+    transparent
+  );
+  animation: shimmer 1.6s infinite;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-floaty {
+  animation: floaty 7s ease-in-out infinite;
+}
